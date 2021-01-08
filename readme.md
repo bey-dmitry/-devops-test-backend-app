@@ -1,4 +1,4 @@
-Define env before start app  
+### Define env before start app  
 
  - `APP_PORT` - application port
  - `DB_USER` - db username
@@ -7,7 +7,17 @@ Define env before start app
  - `DB_PASSWORD` - db password
  - `DB_PORT` - db port
 
+### Application
 
- TODO:
+1. install dependencies  
+```
+npm install
+```
+2. start
+```
+npm run start
+```
+
+ ### TODO:
   - implement Dockerfile
   - implement .dockerignore
