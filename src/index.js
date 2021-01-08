@@ -13,16 +13,18 @@ const client = new Client({
 client.connect()
 
 app.get('/', (req, res) => {
+    console.log('route: /')
     res.send('Hello World!')
 })
   
 app.get('/healthcheck/db', (req, res) => {
-    
+    console.log('route: /healthcheck/db')
     client.query('SELECT $1::text as message', ['[db]: Hello world!'])
         .then(({ rows }) => {
             return rows[0].message;
         })
         .then(msg => {
+            console.log(`db response: ${msg}`)
             res.send(msg)
         })
 })
