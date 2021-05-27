@@ -22,6 +22,3 @@ npm run start
   - implement .dockerignore
 
 
-### Docker run command
-
-sudo docker run --env-file #path/to/your/env.file -p 3000:3000 ildo/nodejs-ops-test
