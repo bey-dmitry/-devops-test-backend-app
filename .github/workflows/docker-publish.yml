@@ -6,14 +6,24 @@ on:
      - production
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on        : ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+    - uses         : actions/checkout@master
+    - name         : Publish to Registry
+      uses         : elgohr/Publish-Docker-Github-Action@master
       with:
-        name: ildo/nodejs-ops-test
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        name       : ildo/nodejs-ops-test
+        username   : ${{ secrets.DOCKER_USERNAME }}
+        password   : ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name         : Command to EC2 instance via SSH
+      uses         : appleboy/ssh-action@master
+      with:
+       host        : ${{ secrets.DEPLOY_SERVER_HOST }}
+       username    : ubuntu
+       key         : ${{ secrets.DEPLOY_SERVER_KEY }}
+       port        : ${{ secrets.PORT }}
+       script:
+            pwd
         
         
