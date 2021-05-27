@@ -33,7 +33,7 @@ jobs:
       -  
         
           
-          name : runscript ssh to instance
+          name : run script ssh inside instance
           uses: appleboy/ssh-action@master
           with:
                    host        : ${{ secrets.DEPLOY_SERVER_HOST }}
