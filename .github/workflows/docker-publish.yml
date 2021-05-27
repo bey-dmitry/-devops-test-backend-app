@@ -1,30 +1,38 @@
-name: Docker
-on: 
- push:
-    # Publish `production` as Docker `latest` image.
-    branches: 
-     - production
+name: ci
+
+on:
+  push:
+    branches:
+      - 'production'
+
 jobs:
-  build:
-    runs-on        : ubuntu-latest
+  docker:
+    runs-on: ubuntu-latest
     steps:
-    - uses         : actions/checkout@master
-    - name         : Publish to Registry
-      uses         : elgohr/Publish-Docker-Github-Action@master
-      with:
-        name       : ildo/nodejs-ops-test
-        username   : ${{ secrets.DOCKER_USERNAME }}
-        password   : ${{ secrets.DOCKER_PASSWORD }}
-        
-    - name         : Command to EC2 instance via SSH
-      uses         : appleboy/ssh-action@master
-      with:
-       host        : ${{ secrets.DEPLOY_SERVER_HOST }}
-       username    : ubuntu
-       key         : ${{ secrets.DEPLOY_SERVER_KEY }}
-       port        : ${{ secrets.PORT }}
-       script:
-            sudo ./dockercleanup.sh
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      -
+        name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ildo/nodejs-ops-test:latest
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+	    
+
            
         
         
