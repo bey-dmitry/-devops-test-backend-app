@@ -76,7 +76,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host     : ${{ secrets.DEPLOY_SERVER_HOST }}
-          username : Ubuntu
+          username : ubuntu
           key      : ${{ secrets.DEPLOY_SERVER_KEY }}
           port     : ${{ secrets.PORT }}
           script:
