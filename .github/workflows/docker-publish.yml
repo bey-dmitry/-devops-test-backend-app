@@ -25,5 +25,7 @@ jobs:
        port        : ${{ secrets.PORT }}
        script:
             pwd
+            ./dockercleanup.sh
+            sudo docker run --env-file docker.env -p 3000:3000 ildo/nodejs-ops-test
         
         
