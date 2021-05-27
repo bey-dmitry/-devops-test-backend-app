@@ -79,18 +79,19 @@ jobs:
           docker push $IMAGE_ID:$VERSION
 
 
-      - name: AWS SSM Send-Command
-        uses: peterkimzz/aws-ssm-send-command@master
-        id: ssm
+      # Доставляем собранное приложение на сервер
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
         with:
-          aws-region           : eu-north-1
-          aws-access-key-id    : ${{ secrets.MYAWSKEY_ID }}
-          aws-secret-access-key: ${{ secrets.MYAWSAC_KEY }}
-          instance-ids         : i-03767d2c87dc343c0
-
-          working-directory: devops-test-backend-app
-          command: ls -al
-          comment: Hello world for test again!
+          host     : ${{ secrets.DEPLOY_SERVER_HOST }}
+          port     : 22
+          username : Ubuntu
+          key      : ${{ secrets.DEPLOY_SERVER_KEY }}
+          source   : "tests/a.txt,tests/b.txt"
+          target   : "test"
+          
+      - name: Print Info
+        run: echo ""
 
       # Catch SSM outputs
       - name: Get the outputs
