@@ -14,7 +14,7 @@ client.connect()
 
 app.get('/', (req, res) => {
     console.log('route: /')
-    res.send('Hello World After 0 days!')
+    res.send('Hello World TEST01!')
 })
   
 app.get('/healthcheck/db', (req, res) => {
