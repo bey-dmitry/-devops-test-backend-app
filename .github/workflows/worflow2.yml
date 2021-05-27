@@ -1,9 +1,0 @@
-name : runscript ssh to instance
-        uses: appleboy/ssh-action@master
-         with:
-         host        : ${{ secrets.DEPLOY_SERVER_HOST }}
-         username    : ubuntu
-         key         : ${{ secrets.DEPLOY_SERVER_KEY }}
-         port        : ${{ secrets.PORT }}
-         script:
-            sudo ./dockercleanup.sh
