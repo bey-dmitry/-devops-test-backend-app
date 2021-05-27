@@ -84,8 +84,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v1
 
-      - name: Deploy to my EC2 instance
-        uses: easingthemes/ssh-deploy@v2.1.5
+
          
       - name: Configure AWS creds
         uses: aws-actions/configure-aws-credentials@v1
@@ -93,8 +92,4 @@ jobs:
           aws-access-key-id    : ${{ secrets.MY_AWS_ACCESS_KEY }} 
           aws-secret-access-key: ${{ secrets.MY_AWS_SECRET_KEY }}        
                   
-        env:
-          SOURCE: "./"
-          REMOTE_HOST: "ec2-13-49-220-180.eu-north-1.compute.amazonaws.com"
-          REMOTE_USER: "ubuntu"
-          TARGET: "/home/ubuntu/devops-test-backend-app"
+       
