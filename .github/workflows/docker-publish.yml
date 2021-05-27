@@ -77,16 +77,13 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-
-
  
- 
- - name: SSH Command to AWS EC2
-   uses: appleboy/ssh-action@master
-   with:
-     host: ${{ secrets.REMOTE_HOST }}
-     username: Ubuntu
-     key: ${{ secrets.CICD_SSH_KEY }}
-     port: 22
-     script:
+      - name: SSH Command to AWS EC2
+        uses: appleboy/ssh-action@master
+        with:
+         host: ${{ secrets.REMOTE_HOST }}
+         username: Ubuntu
+         key: ${{ secrets.CICD_SSH_KEY }}
+         port: 22
+         script:
             pwd
