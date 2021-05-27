@@ -79,9 +79,7 @@ jobs:
           docker push $IMAGE_ID:$VERSION
 
 
-name: Push-to-EC2
 
-on: push
 
 jobs:
   deploy:
