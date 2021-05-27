@@ -75,9 +75,9 @@ jobs:
       - name: SSH Command to AWS EC2
         uses: appleboy/ssh-action@master
         with:
-         host     : ${{ secrets.DEPLOY_SERVER_HOST }}
-         username : Ubuntu
-         key      : ${{ secrets.DEPLOY_SERVER_KEY }}
-         port      : 22
-         script:
+          host     : ${{ secrets.DEPLOY_SERVER_HOST }}
+          username : Ubuntu
+          key      : ${{ secrets.DEPLOY_SERVER_KEY }}
+          port     : ${{ secrets.PORT }}
+          script:
             pwd
