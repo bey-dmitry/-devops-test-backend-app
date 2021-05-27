@@ -84,8 +84,8 @@ jobs:
         id: ssm
         with:
           aws-region           : eu-north-1
-          aws-access-key-id    : ${{ secrets.MYAWSACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.MYAWSSECRET_KEY }}
+          aws-access-key-id    : ${{ secrets.MYAWSKEY_ID }}
+          aws-secret-access-key: ${{ secrets.MYAWSAC_KEY }}
           instance-ids         : i-03767d2c87dc343c0
 
           working-directory: devops-test-backend-app
