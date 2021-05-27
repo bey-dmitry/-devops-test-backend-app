@@ -90,7 +90,7 @@ jobs:
 
           working-directory: devops-test-backend-app
           command: ls -al
-          comment: Hello world!
+          comment: Hello world for test!
 
       # Catch SSM outputs
       - name: Get the outputs
